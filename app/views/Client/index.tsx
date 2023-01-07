@@ -1,10 +1,10 @@
 import { Text, SafeAreaView } from "react-native";
-import { styles } from "./styles-home";
+import { styles } from "./styles-client";
 
-export default function Home(){
+export default function Client(){
     return(
         <SafeAreaView style={styles.safeAreaView}>
-            <Text style={styles.title}>Home</Text>
+            <Text style={styles.title}>Client</Text>
         </SafeAreaView>
     )
 }
