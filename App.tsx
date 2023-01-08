@@ -5,7 +5,6 @@ import { StatusBar } from 'react-native';
 import Routes from './app/routes';
 import { databaseInit } from '@app/services/database/config';
 
-
 export default function App() {
     useEffect(()=>{
         databaseInit()

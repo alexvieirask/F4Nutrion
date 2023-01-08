@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Alex Vieira",
+    "function": "Software Developer (Programmer)",
+    "color": "#FF6638"
+  },
+  {
+    "id": 2,
+    "name": "Amadeus Poletti",
+    "function": "Designer and Animations (UI)",
+    "color": "#FF6638"
+  },
+  {
+    "id": 3,
+    "name": "Gabriel Zanella",
+    "function": "Database Specialist",
+    "color": "#FF6638"
+  },
+  {
+    "id": 4,
+    "name": "Felipe Hoffmann",
+    "function": "Nutritional Researcher",
+    "color": "#FF6638"
+  }
+]

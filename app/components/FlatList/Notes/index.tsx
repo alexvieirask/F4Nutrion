@@ -6,16 +6,16 @@ import { NoteItem } from "./Item"
 
 interface Props{
     data: TNote[],
-    ref: React.LegacyRef<FlatList<any>>
+    flatlistRef: React.LegacyRef<FlatList<any>>
 }
 
-const FlatListNotes = ({ data, ref } : Props) : JSX.Element =>  {
+const FlatListNotes = ({ data, flatlistRef } : Props) : JSX.Element =>  {
     return(
         <>
             <FlatList
                 data={data}
                 style={styles.container}
-                ref= {ref}
+                ref= {flatlistRef}
                 keyExtractor= { (note) => note.id.toString() }
                 showsHorizontalScrollIndicator = {false}
                 renderItem={({ item: note }) => <NoteItem note={note} />}

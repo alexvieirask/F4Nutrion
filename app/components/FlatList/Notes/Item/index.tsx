@@ -7,7 +7,6 @@ interface Props{
 }
 
 const NoteItem = ({ note } : Props) : JSX.Element => {
-    console.log(note)
     return(
         <TouchableOpacity style={styles.container}>
             <Text style={styles.title}>{note.title}</Text>

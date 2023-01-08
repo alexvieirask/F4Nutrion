@@ -47,7 +47,7 @@ export default function Notes(){
 
             { notes.length > 0 ? 
             (
-                <FlatListNotes data={notes} ref={flatlistRef} />
+                <FlatListNotes data={notes} flatlistRef={flatlistRef} />
             )  : 
             (
             <NothingToShow label="notes" /> 
