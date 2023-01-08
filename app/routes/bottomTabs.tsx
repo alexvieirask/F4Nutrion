@@ -1,4 +1,4 @@
-import { createBottomTabNavigator, BottomTabNavigationOptions  } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
 import COLORS from '@app/common/_vars'
 
 import MaterialCommunityIcons  from "react-native-vector-icons/MaterialCommunityIcons"
@@ -32,7 +32,6 @@ export default function BottomTabs(){
             bottom: "11%",
     }}
 
-    
     return(
         <Tab.Navigator backBehavior='history' screenOptions={Tab__Options}>
             <Tab.Screen name="Home" component={Home} options={{
