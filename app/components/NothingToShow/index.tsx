@@ -6,7 +6,7 @@ interface Props{
     label: string,
 }
 
-const NothingToShow = ({ label } : Props) =>{
+const NothingToShow = ({ label } : Props) : JSX.Element => {
     const [opacity, setOpacity] = useState<any>(new Animated.Value(0));
     styles.container = {...styles.container, opacity:opacity}
    
@@ -36,7 +36,6 @@ const NothingToShow = ({ label } : Props) =>{
         <Animated.View style={styles.container}>
             <Text style={styles.title}>No registered {label}.</Text>
         </Animated.View>
-  
     )
 }
 

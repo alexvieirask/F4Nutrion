@@ -1,5 +1,7 @@
 import { createBottomTabNavigator, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
-import COLORS from '@app/common/_vars'
+
+import COLORS from '@app/services/_vars'
+import { propsNavigationStack } from '@app/services/types/routes'
 
 import MaterialCommunityIcons  from "react-native-vector-icons/MaterialCommunityIcons"
 import Entypo  from "react-native-vector-icons/Entypo"
@@ -12,7 +14,7 @@ import Client from '@app/views/Client'
 import About from '@app/views/About'
 
 export default function BottomTabs(){
-    const Tab = createBottomTabNavigator()
+    const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
     
     const Tab__Options :  BottomTabNavigationOptions =  {
         tabBarInactiveBackgroundColor: COLORS.ORANGE_MID,
@@ -33,8 +35,8 @@ export default function BottomTabs(){
     }}
 
     return(
-        <Tab.Navigator backBehavior='history' screenOptions={Tab__Options}>
-            <Tab.Screen name="Home" component={Home} options={{
+        <Navigator backBehavior='history' screenOptions={Tab__Options}>
+            <Screen name="Home" component={Home} options={{
                 ...Tab__LabelOptions,
                 tabBarIcon: ({ size, color }) => (
                     <Entypo name="home" size={size} color={color} />
@@ -42,7 +44,7 @@ export default function BottomTabs(){
             }}
             />
 
-            <Tab.Screen name="Client" component={Client} options={{
+            <Screen name="Client" component={Client} options={{
                 ...Tab__LabelOptions,
                 tabBarIcon: ({ size, color }) => (
                     <Ionicons name="people-sharp" size={size} color={color} />
@@ -50,7 +52,7 @@ export default function BottomTabs(){
             }}
             />
 
-            <Tab.Screen name="Notes" component={Notes} options={{
+            <Screen name="Notes" component={Notes} options={{
                 ...Tab__LabelOptions,
                 tabBarIcon: ({ size, color }) => (
                     <MaterialCommunityIcons name="note-text" size={size} color={color}/>
@@ -58,7 +60,7 @@ export default function BottomTabs(){
             }}
             />
 
-            <Tab.Screen name="About" component={About} options={{
+            <Screen name="About" component={About} options={{
                 ...Tab__LabelOptions,
                 tabBarIcon: ({ size, color }) => (
                     <AntDesign name="question" size={size} color={color} />
@@ -66,7 +68,7 @@ export default function BottomTabs(){
             }}
             />
 
-        </Tab.Navigator>    
+        </Navigator>    
     )
 
 }

@@ -1,11 +1,11 @@
-import { View, TouchableWithoutFeedback, SafeAreaView, StatusBar } from "react-native";
+import { View, TouchableWithoutFeedback } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-import COLORS from "@app/common/_vars";
+import COLORS from "@app/services/_vars";
 import { styles } from "./styles-headerEmpty";
 
-const HeaderEmpty = () => {
+const HeaderEmpty = () : JSX.Element =>  {
     const navigation = useNavigation();
 
     return (

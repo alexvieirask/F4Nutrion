@@ -2,10 +2,10 @@ import { View, TextInput, Text  } from "react-native";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
 
-import COLORS from "@app/common/_vars";
+import COLORS from "@app/services/_vars";
 import { styles } from "./styles-noteInput";
 
-const NoteInput = (props : any) => {
+const NoteInput = (props : any) : JSX.Element => {
     const [currentColor, setCurrentColor] = useState<string>(COLORS.LIGHT_GRAY2);
     styles.input =  {...styles.input, borderColor: currentColor}
    

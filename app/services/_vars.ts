@@ -6,6 +6,6 @@ const COLORS = {
     ORANGE: "#FF6638",
     ORANGE_MID: "#F95738",
     ORANGE_STRONG: "#FF3700",
-  };
+};
 
-  export default COLORS 
+export default COLORS 

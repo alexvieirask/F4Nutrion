@@ -1,29 +1,40 @@
-import { useState } from "react";
-import { Text, SafeAreaView, View, TouchableOpacity } from "react-native";
+import React, { useCallback, useRef, useState } from "react";
+import { Text, SafeAreaView, View, TouchableOpacity, FlatList } from "react-native";
 import { styles } from "./styles-notes";
 
-import { propsStack } from "@app/common/types/routes";
-
-import { useNavigation } from "@react-navigation/native";
-
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import Ionicons  from "react-native-vector-icons/Ionicons"
-import COLORS from "@app/common/_vars";
 
 import { NothingToShow } from "@app/components/NothingToShow";
-import { Inote } from "@app/common/types/note";
 
-
+import { TNote } from "@app/services/types/note";
+import COLORS from "@app/services/_vars";
+import { propsStack } from "@app/services/types/routes";
+import { returnAllNotes } from "@app/services/database/notes";
+import { FlatListNotes } from "@app/components/FlatList/Notes";
 
 export default function Notes(){
-    const [ notes, setNotes ] = useState<Inote[]>([])
-
+    const [ notes, setNotes ] = useState<TNote[]>([])
     const navigation = useNavigation<propsStack>()
-
+    const flatlistRef = useRef()
+    
     const redirectToFormAddNotes = () : void => {
         navigation.navigate("FormNote")
     }
 
+    const handleFatchData = async () : Promise<TNote[]> =>{
+        const notes = await returnAllNotes()
 
+        setNotes(notes)
+
+        return notes
+    }
+    
+    useFocusEffect(
+        useCallback(()=>{
+            handleFatchData()
+        },[])
+    )
 
     return(
         <SafeAreaView style={{...styles.safeAreaView, flex:1}}>
@@ -34,8 +45,13 @@ export default function Notes(){
                 </TouchableOpacity>
             </View>
 
-            { notes.length > 0 ? <Text>Tem algo</Text> : <NothingToShow label="notes" /> }
-
+            { notes.length > 0 ? 
+            (
+                <FlatListNotes data={notes} ref={flatlistRef} />
+            )  : 
+            (
+            <NothingToShow label="notes" /> 
+            )}
 
         </SafeAreaView>
     )

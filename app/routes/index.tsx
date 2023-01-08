@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack'
-import { propsNavigationStack } from '@app/common/types/routes'
+import { propsNavigationStack } from '@app/services/types/routes'
 
 import BottomTabs from './bottomTabs'
 import FormNote from '@app/views/Notes/FormNote'

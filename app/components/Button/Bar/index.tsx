@@ -7,7 +7,6 @@ type propsButton = {
 
 }
 
-
 const ButtonBar = ({ label, action  } : propsButton) => {
     return(
     <TouchableHighlight onPress={action}>

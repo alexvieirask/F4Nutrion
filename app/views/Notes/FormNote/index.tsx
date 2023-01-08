@@ -4,19 +4,27 @@ import { SafeAreaView, View, Text } from "react-native";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { NOTE_SCHEMA } from "@app/common/_yup_schemas";
+import { NOTE_SCHEMA } from "@app/services/_yup_schemas";
 import { styles } from "./styles-formNote";
 
 import { NoteInput } from "@app/components/Input/Note";
-import { propsNote } from "@app/common/types/note";
+import { TNote, TFormNote } from "@app/services/types/note";
 import { ButtonBar } from "@app/components/Button/Bar";
+import { getCurrentDate } from "@app/services/utils/date";
+import { insertNote } from "@app/services/database/notes";
 
 
 export default function FormNote(){
     const { control,handleSubmit,formState: { errors },setValue } = useForm({ resolver: yupResolver(NOTE_SCHEMA) });
 
-    const handleSubmitForm = (note : propsNote) => {
-        console.log(note)
+    const handleSubmitForm = (note : TFormNote) => {
+        handleNewNote(note)
+    }
+
+    const handleNewNote = async (note: TFormNote) => {
+        const newNote : TNote  = {...note, date: getCurrentDate()}
+        await insertNote(newNote)
+
     }
 
 
