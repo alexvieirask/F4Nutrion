@@ -6,7 +6,13 @@ type propsNavigationStack = {
     Client: undefined
     Notes: undefined
     About: undefined
-    FormNote: undefined
+    FormNote: {
+        id?: number
+        mode: "add" | "edit"
+    }
+    DetailsNote: {
+        id : number
+    }
 }
 
 type propsStack = NativeStackNavigationProp<propsNavigationStack>

@@ -1,39 +1,75 @@
 import { HeaderRoute } from "@app/components/Header/Route";
-import { SafeAreaView, View, Text } from "react-native";
-
-
+import { SafeAreaView, View, Text, Keyboard } from "react-native";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NOTE_SCHEMA } from "@app/services/_yup_schemas";
 import { styles } from "./styles-formNote";
-
 import { NoteInput } from "@app/components/Input/Note";
 import { TextError } from "@app/components/Text/Error";
-
 import { TNote, TFormNote } from "@app/services/types/note";
 import { ButtonBar } from "@app/components/Button/Bar";
 import { getCurrentDate } from "@app/services/utils/date";
-import { insertNote } from "@app/services/database/notes";
+import { insertNote, returnNoteById, updateNote } from "@app/services/database/notes";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { propsStack } from "@app/services/types/routes";
+import { useEffect } from "react";
 
+interface Props{
+    mode: "add" | "edit",
+    id: number
+}
 
 export default function FormNote(){
+    const navigation = useNavigation<propsStack>()
+    const route = useRoute()
+    const { mode, id } = route.params as Props
+    const formatMode = `${mode[0].toUpperCase()}${mode.substring(1,mode.length)}`
+
     const { control,handleSubmit,formState: { errors },setValue } = useForm<TFormNote>({ resolver: yupResolver(NOTE_SCHEMA) });
 
-    const handleSubmitForm = (note : TFormNote) => {
-        handleNewNote(note)
+    const handleSubmitForm = (note : TNote) : void => {
+        console.log("submit",note)
+
+        mode === "add" && handleNewNote(note)
+        mode === "edit" && handleEditNote(note)
+
     }
 
-    const handleNewNote = async (note: TFormNote) => {
+    const handleNewNote = async (note: TFormNote) : Promise<void> => {
         const newNote : TNote  = {...note, date: getCurrentDate()}
         await insertNote(newNote)
-
+        handleClose()
     }
+
+    const handleSetCurrentNote = async () : Promise<void> => {
+        const note : TNote = await returnNoteById(id)
+        const { title, content } = note 
+        
+        setValue("title", title)
+        setValue("content", content)
+    }
+
+    const handleEditNote = async (noteForm: TFormNote) : Promise<void> => {
+        const note : TNote = {...noteForm,id:id}
+
+        await  updateNote(note)
+        handleClose()
+    }
+
+    const handleClose = () : void => {
+        Keyboard.dismiss()
+        navigation.goBack()
+    }
+
+    useEffect(()=>{
+        mode === "edit" && handleSetCurrentNote()
+    },[])
 
     return(
         <View style={{ flex:1 }}>
             <HeaderRoute />
             <SafeAreaView style={styles.safeAreaView}>
-                <Text style={styles.titleForm}>Add Note</Text>
+                <Text style={styles.titleForm}>{formatMode} Note</Text>
                 <NoteInput
                     control={control}
                     name="title"
@@ -45,7 +81,7 @@ export default function FormNote(){
                 <NoteInput
                     control={control}
                     name="content"
-                    maxLength={300}
+                    maxLength={500}
                     label="Content"
                     multiline={true}
                 />

@@ -17,7 +17,7 @@ const FlatListNotes = ({ data, flatlistRef } : Props) : JSX.Element =>  {
                 style={styles.container}
                 ref= {flatlistRef}
                 keyExtractor= { (note) => note.id.toString() }
-                showsHorizontalScrollIndicator = {false}
+                showsVerticalScrollIndicator = {false}
                 renderItem={({ item: note }) => <NoteItem note={note} />}
             />
         </>

@@ -4,12 +4,13 @@ import COLORS from "@app/services/_vars";
 const styles = StyleSheet.create({
     input: {
         fontSize: 16,
-        height: 50,
+        minHeight: 50,
         textAlign: "justify",
         borderRadius: 5,
         borderColor: COLORS.LIGHT_GRAY2,
         padding: "3%",
         borderWidth: 1,
+        maxHeight:200
     },
     containerInput: {
         marginVertical: "2%",

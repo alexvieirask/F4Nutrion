@@ -2,9 +2,10 @@ import { StyleSheet } from 'react-native'
 
 const styles_global = StyleSheet.create({
     safeAreaView:{
-        padding: '5%',
-        flex:1,
-    
+        marginTop: '5%',
+        marginHorizontal:'5%',
+        marginBottom:'15%',
+        flex:1
     },
     title: {
         color: "#FF6638",
