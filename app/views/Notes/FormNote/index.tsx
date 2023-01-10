@@ -1,5 +1,6 @@
-import { HeaderRoute } from "@app/components/Header/Route";
+import { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Keyboard, ActivityIndicator } from "react-native";
+import { HeaderRoute } from "@app/components/Header/Route";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NOTE_SCHEMA } from "@app/services/_yup_schemas";
@@ -12,7 +13,6 @@ import { getCurrentDate } from "@app/services/utils/date";
 import { insertNote, returnNoteById, updateNote } from "@app/services/database/notes";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { propsStack } from "@app/services/types/routes";
-import { useEffect, useState } from "react";
 import COLORS from "@app/services/_vars";
 
 interface Props{
@@ -20,7 +20,7 @@ interface Props{
     id: number
 }
 
-export default function FormNote(){
+export default function FormNote() : JSX.Element{
     const navigation = useNavigation<propsStack>()
     const route = useRoute()
     const { mode, id } = route.params as Props
@@ -73,31 +73,29 @@ export default function FormNote(){
             {mode === "edit" && loading ?(
                 <ActivityIndicator style={{ flex: 1 }} color={COLORS.ORANGE}/>
             ):
-            <>
-                <SafeAreaView style={styles.safeAreaView}>
-                    <Text style={styles.titleForm}>{formatMode} Note</Text>
-                    <NoteInput
-                        control={control}
-                        name="title"
-                        maxLength={35}
-                        label= "Title"
-                        multiline={false}
-                    />
-                    {errors.title && <TextError message={errors.title.message} />}
-                    <NoteInput
-                        control={control}
-                        name="content"
-                        maxLength={500}
-                        label="Content"
-                        multiline={true}
-                    />
-                    {errors.content && <TextError message={errors.content.message} />}
-                </SafeAreaView>
-                <ButtonBar label="Confirm" action={handleSubmit(handleSubmitForm)}/>
-            </>
-            
+                <>
+                    <SafeAreaView style={styles.safeAreaView}>
+                        <Text style={styles.titleForm}>{formatMode} Note</Text>
+                        <NoteInput
+                            control={control}
+                            name="title"
+                            maxLength={35}
+                            label= "Title"
+                            multiline={false}
+                        />
+                        {errors.title && <TextError message={errors.title.message} />}
+                        <NoteInput
+                            control={control}
+                            name="content"
+                            maxLength={500}
+                            label="Content"
+                            multiline={true}
+                        />
+                        {errors.content && <TextError message={errors.content.message} />}
+                    </SafeAreaView>
+                    <ButtonBar label="Confirm" action={handleSubmit(handleSubmitForm)}/>
+                </>
             }
-
         </View>
     )
 

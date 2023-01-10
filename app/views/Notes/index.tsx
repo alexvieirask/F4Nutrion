@@ -10,7 +10,7 @@ import { propsStack } from "@app/services/types/routes";
 import { returnAllNotes } from "@app/services/database/notes";
 import { FlatListNotes } from "@app/components/FlatList/Notes";
 
-export default function Notes(){
+export default function Notes() : JSX.Element{
     const [ notes, setNotes ] = useState<TNote[]>([])
     const navigation = useNavigation<propsStack>()
 

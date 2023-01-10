@@ -7,7 +7,7 @@ type propsButton = {
 
 }
 
-const ButtonBar = ({ label, action  } : propsButton) => {
+const ButtonBar = ({ label, action  } : propsButton) : JSX.Element => {
     return(
     <TouchableHighlight onPress={action}>
         <View style={styles.container}>

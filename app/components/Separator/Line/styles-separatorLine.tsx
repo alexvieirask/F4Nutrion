@@ -7,7 +7,6 @@ const _styles = StyleSheet.create({
         height:2,
         marginVertical:5
     }
-    
 })
 
 export { _styles }

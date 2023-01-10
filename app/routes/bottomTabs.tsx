@@ -13,7 +13,7 @@ import Notes from '@app/views/Notes'
 import Client from '@app/views/Client'
 import About from '@app/views/About'
 
-export default function BottomTabs(){
+export default function BottomTabs() : JSX.Element{
     const { Navigator, Screen } = createBottomTabNavigator<propsNavigationStack>()
     
     const Tab__Options :  BottomTabNavigationOptions =  {

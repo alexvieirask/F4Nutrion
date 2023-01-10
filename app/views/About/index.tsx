@@ -3,7 +3,7 @@ import { styles } from "./styles-about";
 import { SeparatorLine } from "@app/components/Separator/Line";
 import { FlatListDevelopers } from "@app/components/FlatList/Developers";
 
-export default function About(){
+export default function About() : JSX.Element{
     return(
         <SafeAreaView style={styles.safeAreaView}>
             <Text style={styles.title}>F4Nutrion</Text>

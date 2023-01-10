@@ -15,7 +15,7 @@ interface Props{
     itemId: number
 }
 
-const ModalDelete = ({ open, setOpen, label, itemId } : Props) =>{
+const ModalDelete = ({ open, setOpen, label, itemId } : Props) : JSX.Element =>{
     const navigation = useNavigation<propsStack>()
 
     const handleCloseModal = () =>{

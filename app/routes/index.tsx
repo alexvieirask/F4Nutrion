@@ -5,7 +5,7 @@ import BottomTabs from './bottomTabs'
 import FormNote from '@app/views/Notes/FormNote'
 import DetailsNote from '@app/views/Notes/DetailsNote'
 
-export default function Routes(){
+export default function Routes() : JSX.Element{
     const { Navigator, Screen } = createStackNavigator<propsNavigationStack>()
     const NO_SHOW_HEADER = {
         headerShown: false

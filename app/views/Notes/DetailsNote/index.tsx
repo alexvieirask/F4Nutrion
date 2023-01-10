@@ -12,7 +12,7 @@ interface Props{
 }
 
 
-export default function DetailsNote() : JSX.Element {
+export default function DetailsNote() : JSX.Element{
     const route = useRoute()
     const { id } = route.params as Props
     const [ note,setNote ] = useState<TNote | null>(null)

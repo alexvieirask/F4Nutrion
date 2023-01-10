@@ -7,7 +7,7 @@ interface Props{
 }
 
 const NothingToShow = ({ label } : Props) : JSX.Element => {
-    const [opacity, setOpacity] = useState<any>(new Animated.Value(0));
+    const [opacity ] = useState<any>(new Animated.Value(0));
     styles.container = {...styles.container, opacity:opacity}
    
     function animatedLoopShowAndHide() {
