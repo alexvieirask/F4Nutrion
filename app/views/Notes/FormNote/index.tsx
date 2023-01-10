@@ -31,7 +31,7 @@ export default function FormNote(){
 
     return(
         <View style={{ flex:1 }}>
-            <HeaderRoute title="teste"/>
+            <HeaderRoute />
             <SafeAreaView style={styles.safeAreaView}>
                 <Text style={styles.titleForm}>Add Note</Text>
                 <NoteInput

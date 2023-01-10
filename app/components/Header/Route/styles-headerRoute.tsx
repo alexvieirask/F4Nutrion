@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     },
     labelTitle:{
         fontSize:16,
-       
     },
   });
 

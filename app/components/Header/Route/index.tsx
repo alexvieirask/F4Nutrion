@@ -21,8 +21,6 @@ const HeaderRoute = ({title} : Props) : JSX.Element =>  {
             <View style={styles.containerTitle}>
                 <Text style={styles.labelTitle}>{title}</Text>
             </View>
-             
-    
         </View>
   );
 }
