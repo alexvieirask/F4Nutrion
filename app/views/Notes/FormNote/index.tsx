@@ -1,5 +1,5 @@
 import { HeaderRoute } from "@app/components/Header/Route";
-import { SafeAreaView, View, Text, Keyboard } from "react-native";
+import { SafeAreaView, View, Text, Keyboard, ActivityIndicator } from "react-native";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NOTE_SCHEMA } from "@app/services/_yup_schemas";
@@ -12,7 +12,8 @@ import { getCurrentDate } from "@app/services/utils/date";
 import { insertNote, returnNoteById, updateNote } from "@app/services/database/notes";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { propsStack } from "@app/services/types/routes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import COLORS from "@app/services/_vars";
 
 interface Props{
     mode: "add" | "edit",
@@ -24,15 +25,13 @@ export default function FormNote(){
     const route = useRoute()
     const { mode, id } = route.params as Props
     const formatMode = `${mode[0].toUpperCase()}${mode.substring(1,mode.length)}`
+    const [ loading, setLoading ] = useState(true)
 
     const { control,handleSubmit,formState: { errors },setValue } = useForm<TFormNote>({ resolver: yupResolver(NOTE_SCHEMA) });
 
     const handleSubmitForm = (note : TNote) : void => {
-        console.log("submit",note)
-
         mode === "add" && handleNewNote(note)
         mode === "edit" && handleEditNote(note)
-
     }
 
     const handleNewNote = async (note: TFormNote) : Promise<void> => {
@@ -47,6 +46,8 @@ export default function FormNote(){
         
         setValue("title", title)
         setValue("content", content)
+
+        setLoading(false)
     }
 
     const handleEditNote = async (noteForm: TFormNote) : Promise<void> => {
@@ -65,29 +66,37 @@ export default function FormNote(){
         mode === "edit" && handleSetCurrentNote()
     },[])
 
+   
     return(
         <View style={{ flex:1 }}>
             <HeaderRoute />
-            <SafeAreaView style={styles.safeAreaView}>
-                <Text style={styles.titleForm}>{formatMode} Note</Text>
-                <NoteInput
-                    control={control}
-                    name="title"
-                    maxLength={35}
-                    label= "Title"
-                    multiline={false}
-                />
-                {errors.content && <TextError message={errors.title.message} />}
-                <NoteInput
-                    control={control}
-                    name="content"
-                    maxLength={500}
-                    label="Content"
-                    multiline={true}
-                />
-                {errors.content && <TextError message={errors.content.message} />}
-            </SafeAreaView>
-            <ButtonBar label="Confirm" action={handleSubmit(handleSubmitForm)}/>
+            {mode === "edit" && loading ?(
+                <ActivityIndicator style={{ flex: 1 }} color={COLORS.ORANGE}/>
+            ):
+            <>
+                <SafeAreaView style={styles.safeAreaView}>
+                    <Text style={styles.titleForm}>{formatMode} Note</Text>
+                    <NoteInput
+                        control={control}
+                        name="title"
+                        maxLength={35}
+                        label= "Title"
+                        multiline={false}
+                    />
+                    {errors.content && <TextError message={errors.title.message} />}
+                    <NoteInput
+                        control={control}
+                        name="content"
+                        maxLength={500}
+                        label="Content"
+                        multiline={true}
+                    />
+                    {errors.content && <TextError message={errors.content.message} />}
+                </SafeAreaView>
+                <ButtonBar label="Confirm" action={handleSubmit(handleSubmitForm)}/>
+            </>
+            
+            }
 
         </View>
     )
