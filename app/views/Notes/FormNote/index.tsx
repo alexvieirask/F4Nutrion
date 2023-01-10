@@ -1,4 +1,4 @@
-import { HeaderEmpty } from "@app/components/Header/Empty";
+import { HeaderRoute } from "@app/components/Header/Route";
 import { SafeAreaView, View, Text } from "react-native";
 
 
@@ -29,10 +29,9 @@ export default function FormNote(){
 
     }
 
-
     return(
         <View style={{ flex:1 }}>
-            <HeaderEmpty/>
+            <HeaderRoute title="teste"/>
             <SafeAreaView style={styles.safeAreaView}>
                 <Text style={styles.titleForm}>Add Note</Text>
                 <NoteInput

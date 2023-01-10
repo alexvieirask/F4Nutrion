@@ -12,7 +12,7 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <StatusBar />
+            <StatusBar  />
             <Routes  />
         </NavigationContainer>
   );
