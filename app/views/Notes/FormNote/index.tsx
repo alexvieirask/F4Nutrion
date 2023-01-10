@@ -83,7 +83,7 @@ export default function FormNote(){
                         label= "Title"
                         multiline={false}
                     />
-                    {errors.content && <TextError message={errors.title.message} />}
+                    {errors.title && <TextError message={errors.title.message} />}
                     <NoteInput
                         control={control}
                         name="content"
