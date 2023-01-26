@@ -3,13 +3,13 @@ import { styles } from "./styles-buttonBar";
 
 type propsButton = {
     label:  "Confirm" | undefined
-    action: (event: GestureResponderEvent) => void
+    onPress: (event: GestureResponderEvent) => void
 
 }
 
-const ButtonBar = ({ label, action  } : propsButton) : JSX.Element => {
+const ButtonBar = ({ label, onPress  } : propsButton) : JSX.Element => {
     return(
-    <TouchableHighlight onPress={action}>
+    <TouchableHighlight onPress={onPress}>
         <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>
         </View>

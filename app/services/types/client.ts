@@ -2,7 +2,7 @@ type Tclient = {
     id?:number,
     name: string,
     cpf: string,
-    age: string,
+    birth: string,
     cell?: string,
     telephone?: string,
     email: string,

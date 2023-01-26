@@ -2,7 +2,7 @@ import { Text } from "react-native"
 import { styles } from "./styles-error"
 
 interface Props{
-    message: string
+    message?: string
 }
 
 const TextError = ({ message } : Props) : JSX.Element =>  {

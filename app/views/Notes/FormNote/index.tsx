@@ -81,7 +81,6 @@ export default function FormNote() : JSX.Element{
                             name="title"
                             maxLength={35}
                             label= "Title"
-                            multiline={false}
                         />
                         {errors.title && <TextError message={errors.title.message} />}
                         <NoteInput
@@ -89,11 +88,11 @@ export default function FormNote() : JSX.Element{
                             name="content"
                             maxLength={500}
                             label="Content"
-                            multiline={true}
+                            multiline
                         />
                         {errors.content && <TextError message={errors.content.message} />}
                     </SafeAreaView>
-                    <ButtonBar label="Confirm" action={handleSubmit(handleSubmitForm)}/>
+                    <ButtonBar label="Confirm" onPress={handleSubmit(handleSubmitForm)}/>
                 </>
             }
         </View>
