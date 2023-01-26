@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         color: COLORS.ORANGE,
         fontSize: 18,
         fontWeight: "700",
+        marginVertical:'5%'
       },
 })
 

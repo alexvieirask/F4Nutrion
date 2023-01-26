@@ -12,6 +12,10 @@ type propsNavigationStack = {
     }
     DetailsNote: {
         id : number
+    },
+    FormClient: {
+        id?: number
+        mode: "add" | "edit"
     }
 }
 

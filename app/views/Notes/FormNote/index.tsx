@@ -72,7 +72,7 @@ export default function FormNote() : JSX.Element{
             <HeaderRoute />
             {mode === "edit" && loading ?(
                 <ActivityIndicator style={{ flex: 1 }} color={COLORS.ORANGE}/>
-            ):
+            ) :
                 <>
                     <SafeAreaView style={styles.safeAreaView}>
                         <Text style={styles.titleForm}>{formatMode} Note</Text>

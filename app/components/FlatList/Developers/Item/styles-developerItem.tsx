@@ -10,7 +10,11 @@ const styles = StyleSheet.create({
         height: width / 2.4,
         borderRadius: 12,
         justifyContent: "flex-end",
+        backgroundColor:'#FFF',
+        
+        
     },
+    
     containerFunction: {
         backgroundColor: COLORS.ORANGE,
         height: "30%",
