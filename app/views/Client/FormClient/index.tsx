@@ -12,13 +12,39 @@ import { TextError } from "@app/components/Text/Error";
 import { Tclient } from "@app/services/types/client";
 import { SeparatorForm } from "@app/components/Separator/Form";
 import { REGEX_TELEPHONE } from "@app/services/_regex";
+import { InputRadio } from "@app/components/Input/Radio";
+import { GENDERS_SCHEMA } from "@app/services/_radio_schemas";
+import { ButtonBar } from "@app/components/Button/Bar";
+import { ResizedInput } from "@app/components/Input/Resized";
+import { useEffect } from "react";
 
 export default function FormClient() : JSX.Element{
     const { control, handleSubmit, formState: { errors }, setValue } = useForm<Tclient>({ resolver: yupResolver(CLIENT_SCHEMA) });
     const navigation = useNavigation<propsStack>()
 
+    const handleSubmitForm = (data) => {
+        console.log(data)
+        console.log("ol")
+    }
 
-    
+    function testForm(){
+        setValue("name", 'title')
+        setValue("cpf", '120.564.354-43')
+        setValue("birth", "01/24/2005")
+        setValue("cell","(47)99236-3378")
+        setValue("email","alexvieiradias2019@gmail.com")
+        setValue("height",1.70)
+        setValue("weight",54)
+        setValue("objective", "Muscular mass")
+        setValue("observation", "dont have")
+
+
+    }
+
+    useEffect(()=>{
+        testForm()
+    },[])
+
     return (
         <View style={{flex:1}}>
             <HeaderRoute />
@@ -35,7 +61,7 @@ export default function FormClient() : JSX.Element{
                                 {errors.cpf && <TextError message={errors.cpf.message} />}
                             </View>
                             <View style={{width:'48%'}}>
-                                <ClientInput control={control} required mask={Masks.DATE_MMDDYYYY} name="birth" label={"Birth"} keyboardType="numeric"/>
+                                <ClientInput control={control} required mask={Masks.DATE_MMDDYYYY} name="birth" label={"Birth"} keyboardType="numeric" placeholder="MM/DD/YYYY"/>
                                 {errors.birth && <TextError message={errors.birth.message} />}
                             </View>
                         </View>
@@ -68,13 +94,23 @@ export default function FormClient() : JSX.Element{
                             </View>
                         </View> 
 
-                        <ClientInput control={control} name="objective" required label="Objective" />
+                        <ClientInput maxLength={40} control={control} name="objective" required label="Objective" />
                         {errors.objective && <TextError message={errors.objective.message} />}
 
+                        <InputRadio control={control} name="gender"data={GENDERS_SCHEMA} label="Gender" initial={1}/>
+                        {errors.gender && <TextError message={errors.gender.message} />}
+
+                        <SeparatorForm label={"Extra"} />
+
+                        <ResizedInput control={control} name="observation" label={"Observation"}/>
+                        {errors.observation && <TextError message={errors.observation.message} />}
+                    
                     </View>
                 </ScrollView>
-
+                
+              
             </SafeAreaView>
+            <ButtonBar label="Confirm" onPress={handleSubmit(handleSubmitForm)}/>
         </View>
     )
 }

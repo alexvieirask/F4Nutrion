@@ -1,8 +1,12 @@
 import { StyleSheet } from "react-native";
-import { styles_global } from "@app/services/_styles_global";
 
 const styles = StyleSheet.create({
-    ...styles_global,
+    safeAreaView:{
+        marginTop: '5%',
+        marginHorizontal:'5%',
+        marginBottom:'5%',
+        flex:1
+    },
     titleForm:{
         color: "#ff6638",
         fontSize: 30,

@@ -8,7 +8,7 @@ const NOTE_SCHEMA = yup.object({
 const CLIENT_SCHEMA = yup.object({
     name: yup.string().required().trim(),
     cpf: yup.string().notRequired().trim().nullable(true),
-    birth: yup.string().required().length(3),
+    birth: yup.string().required(),
     cell: yup.string().notRequired().trim().nullable(true),
     telephone: yup.string().notRequired().trim().nullable(true),
     email: yup.string().email().required().trim(),

@@ -9,7 +9,7 @@ import COLORS from "@app/services/_vars";
 const ClientInput = (props : TcontrolledInput)  : JSX.Element => {
     const [currentColor, setCurrentColor] = useState<string>(COLORS.LIGHT_GRAY2);
     styles.input =  {...styles.input, borderColor: currentColor}
-
+  
     return(
         <View style={styles.container}>
             <Text style={styles.label}> {props.required ? `${props.label} *` : props.label}</Text>

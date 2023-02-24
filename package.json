@@ -17,6 +17,7 @@
     "expo": "~47.0.9",
     "expo-sqlite": "^11.0.0",
     "expo-status-bar": "~1.4.2",
+    "radio-buttons-react-native": "^1.0.4",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-hook-form": "^7.41.5",
